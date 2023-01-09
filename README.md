@@ -1,6 +1,6 @@
 # raspberry-setup
 
-## Prerequistes
+## Prerequisites
 
 - Raspberry Pi with Hifiberry soundcard
 - [Raspberry Pi OS with desktop and recommended software](https://www.raspberrypi.com/software/operating-systems/) is installed on the SD card
