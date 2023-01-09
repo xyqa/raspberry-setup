@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - Raspberry Pi with Hifiberry soundcard
-- [Raspberry Pi OS with desktop and recommended software](https://www.raspberrypi.com/software/operating-systems/) is installed on the SD card
+- [Raspberry Pi OS with desktop](https://www.raspberrypi.com/software/operating-systems/) is installed on the SD card
 - Activated SSH
 - Connected to the network
 - Optional: Do not use the default user `pi` but rename / create a separate user. See [

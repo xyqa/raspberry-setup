@@ -1,3 +1,5 @@
+XYQA_RASPBERRY_SETUP_PATH=$(pwd)
+
 source config.txt
 
 # upgrade all packages
@@ -18,40 +20,24 @@ echo "\n[CUSTOM]\ndtoverlay=hifiberry-dacplus\n" | sudo tee -a /boot/config.txt
 
 # Install spotifyd: https://github.com/Spotifyd/spotifyd
 ## Download & unzip
-XYQA_SPOTIFYD_PATH="~/spotifyd"
+XYQA_SPOTIFYD_PATH="/home/$XYQA_USER_NAME/spotifyd"
 
-mkdir XYQA_SPOTIFYD_PATH
-cd XYQA_SPOTIFYD_PATH
+mkdir $XYQA_SPOTIFYD_PATH
 
-wget https://github.com/Spotifyd/spotifyd/releases/download/v0.3.4/spotifyd-linux-armhf-default.tar.gz
+wget https://github.com/Spotifyd/spotifyd/releases/download/v0.3.4/spotifyd-linux-armhf-default.tar.gz -P $XYQA_SPOTIFYD_PATH
 tar xzf spotifyd-linux-armhf-default.tar.gz
+
+## Copy config file
+mkdir ~/.config/spotifyd
+cp $XYQA_RASPBERRY_SETUP_PATH/config/spotifyd.conf ~/.config/spotifyd/spotifyd.conf
 
 ## Systemd daemon file
 sudo wget https://raw.githubusercontent.com/Spotifyd/spotifyd/master/contrib/spotifyd.service -O /etc/systemd/user/spotifyd.service
-sudo sed -i "s|ExecStart\=.*|ExecStart=$XYQA_SPOTIFYD_PATH|" /etc/systemd/user/spotifyd.service
+sudo sed -i "s|ExecStart\=.*|ExecStart=$XYQA_SPOTIFYD_PATH/spotifyd --no-daemon|" /etc/systemd/user/spotifyd.service
 
 ## Starting spotifyd at boot
 sudo loginctl enable-linger $XYQA_USER_NAME
 systemctl --user enable spotifyd.service
-
-# Install raspotify: https://github.com/dtcooper/raspotify
-# --------------------------------------------------------
-## Install service
-#sudo apt-get -y install curl && curl -sL https://dtcooper.github.io/raspotify/install.sh | sh
-
-## Set settings
-#sudo sed -i 's/#LIBRESPOT_NAME="Librespot"/LIBRESPOT_NAME="Stereoanlage"/' /etc/raspotify/conf
-#sudo sed -i 's/#LIBRESPOT_BITRATE="160"/LIBRESPOT_BITRATE="320"/' /etc/raspotify/conf
-#
-#sudo sed -i 's/#LIBRESPOT_USERNAME=""/LIBRESPOT_USERNAME="$SPOTIFY_USER_NAME"/' /etc/raspotify/conf
-#sudo sed -i 's/#LIBRESPOT_PASSWORD=""/LIBRESPOT_PASSWORD="$SPOTIFY_PASSWORD"/' /etc/raspotify/conf
-
-# Copy raspotify config file
-#sudo systemctl restart raspotify
-
-# TODO Optionally Install higher quality sample rate converters
-
-# Login via /etc/default/raspotify
 
 
 # TODO: ALSAMIXER VOLUME TO 100
