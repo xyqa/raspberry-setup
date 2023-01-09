@@ -2,14 +2,16 @@
 sudo apt-get update
 sudo apt-get upgrade
 
-# Install Hifiberry Soundcard
+# Install Hifiberry Sound card
 # ---------------------------
 ## Disable driver for onboard sound
 sudo sed -i 's/dtparam=audio=on/#dtparam=audio=on/' /boot/config.txt
 
+## TODO: Chose sound card as main output device
+
+
 ## Enable Hifiberry Soundcard
 echo "\n[CUSTOM]\ndtoverlay=hifiberry-dacplus\n" | sudo tee -a /boot/config.txt
-
 
 # Install raspotify: https://github.com/dtcooper/raspotify
 # --------------------------------------------------------
@@ -33,3 +35,5 @@ sudo systemctl restart raspotify
 # TODO: install homeassistant via docker
 
 # TODO: install pihole
+
+sudo reboot
