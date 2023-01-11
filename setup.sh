@@ -11,9 +11,15 @@ sudo apt-get upgrade
 ## Disable driver for onboard sound & enable Hifiberry Soundcard
 sudo sed -i 's/dtparam=audio=on/#dtparam=audio=on\ndtoverlay=hifiberry-dacplus/' /boot/config.txt
 
-## TODO: Chose sound card as main output device
-
 source setup_spotifyd.sh
+
+# Install Docker
+mkdir ~/docker
+
+curl -fsSL https://get.Docker.com -o ~/docker/get-docker.sh
+sudo sh ~/docker/get-docker.sh
+# Install Homeassistant
+
 
 # TODO: install homeassistant via docker
 

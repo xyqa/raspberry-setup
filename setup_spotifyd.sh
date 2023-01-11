@@ -1,6 +1,6 @@
 # Install spotifyd: https://github.com/Spotifyd/spotifyd
 ## Download & unzip
-XYQA_SPOTIFYD_PATH="/home/$XYQA_USER_NAME/spotifyd"
+XYQA_SPOTIFYD_PATH="/home/$USER/spotifyd"
 
 mkdir $XYQA_SPOTIFYD_PATH
 
@@ -18,5 +18,5 @@ sudo sed -i "s|ExecStart\=.*|ExecStart=$XYQA_SPOTIFYD_PATH/spotifyd --no-daemon|
 systemctl --user daemon-reload
 
 ## Starting spotifyd at boot
-sudo loginctl enable-linger $XYQA_USER_NAME
+sudo loginctl enable-linger $USER
 systemctl --user enable spotifyd.service
