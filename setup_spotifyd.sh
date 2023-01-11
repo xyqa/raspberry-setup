@@ -14,7 +14,7 @@ cp $XYQA_RASPBERRY_SETUP_PATH/config/spotifyd.conf ~/.config/spotifyd/spotifyd.c
 ## Systemd daemon file
 mkdir -p ~/.config/systemd/user/
 sudo wget https://raw.githubusercontent.com/Spotifyd/spotifyd/master/contrib/spotifyd.service -O ~/.config/systemd/user/spotifyd.service
-sudo sed -i "s|ExecStart\=.*|ExecStart=$XYQA_SPOTIFYD_PATH/spotifyd/spotifyd --no-daemon|" ~/.config/systemd/user/spotifyd.service
+sudo sed -i "s|ExecStart\=.*|ExecStart=$XYQA_SPOTIFYD_PATH/spotifyd --no-daemon|" ~/.config/systemd/user/spotifyd.service
 systemctl --user daemon-reload
 
 ## Starting spotifyd at boot

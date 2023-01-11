@@ -28,5 +28,5 @@ cd raspberry-setup
 3. Run the script
 
 ```
-sh setup.sh
+bash setup.sh
 ```
