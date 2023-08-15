@@ -13,13 +13,19 @@ sudo sed -i 's/dtparam=audio=on/#dtparam=audio=on\ndtoverlay=hifiberry-dacplus/'
 
 source setup_spotifyd.sh
 
-# Install Docker
-mkdir ~/docker
+source setup_docker.sh
 
-curl -fsSL https://get.Docker.com -o ~/docker/get-docker.sh
-sudo sh ~/docker/get-docker.sh
-# Install Homeassistant
-
+# Install Home Assistant
+# ----------------------
+mkdir ~/homeassistant
+docker run -d \
+  --name homeassistant \
+  --privileged \
+  --restart=unless-stopped \
+  -e TZ=Europe/Berlin \
+  -v ~/homeassistant:/config \
+  --network=host \
+  ghcr.io/home-assistant/home-assistant:stable
 
 # TODO: install homeassistant via docker
 
